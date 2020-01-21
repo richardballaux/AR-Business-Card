@@ -8,7 +8,7 @@ On the business card a QR-code is present. When the QR code is scanned by the na
 The [webpage](https://richardballaux.github.io/AR-Business-Card/) will ask for camera access and when granted, the business card augmented reality overlay will appear.
 
 This is how it currently looks:
-![figure 1](https://github.com/richardballaux/AR-Business-Card/figure1.jpg "Figure 1")
+![figure 1](https://github.com/richardballaux/AR-Business-Card/blob/master/figure1.jpg "Figure 1")
 
 
 A demo can be found [here](https://youtu.be/VKTLNFiDXvw).
