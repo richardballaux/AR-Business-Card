@@ -4,7 +4,7 @@ This repository contains the Augmented Reality overlay of my personal business c
 
 ## Try it out for yourself!
 Scan the QR-code in the image below, allow your brower to access your camera and enjoy the beauty of my AR-business card.
-![figure1](https://github.com/richardballaux/AR-Business-Card/blob/master/firstMarkerCode.PNG) "Figure 1")
+![figure1](https://github.com/richardballaux/AR-Business-Card/blob/master/firstMarkerCode.PNG "Figure 1")
 
 ## How does the user experience work
 
