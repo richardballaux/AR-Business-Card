@@ -1,49 +1,62 @@
-<!doctype HTML>
-<html>
-<head>
-        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    </head>
-    <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-    <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-    <script src="events.js"></script>
+<!-- import aframe and then ar.js with image tracking / location based features -->
+<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 
-  <body style='margin : 0px; overflow: hidden;'>
-    <a-scene embedded arjs="trackingMethod:best; debugUIEnabled: false;">
-    <a-assets>
-        <a-asset-item id="animated-asset" src="https://raw.githubusercontent.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-click-events/models/CesiumMan.gltf"></a-asset-item>
-    </a-assets>
+<!-- style for the loader -->
+<style>
+  .arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-  	<a-marker type =" pattern" preset="hiro" markerhandler emitevents="true" cursor="rayOrigin:mouse" id="animated-marker" smooth="true" smoothCount="3">
+  .arjs-loader div {
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+  }
+</style>
+
+<body style="margin : 0px; overflow: hidden;">
+  <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
+  <div class="arjs-loader">
+    <div>Loading, please wait...</div>
+  </div>
+
+  <!-- a-frame scene -->
+  <a-scene
+    vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true;"
+    embedded
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+  >
+    <!-- a-nft is the anchor that defines an Image Tracking entity -->
+    <!-- on 'url' use the path to the Image Descriptors created before. -->
+    <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
+    <a-nft
+      type="nft"
+      url="QR code rb"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+    >
+      <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
       <a-entity
-        id="animated-model"
-        gltf-model="#animated-asset"
-        scale="2">
+        gltf-model="https://raw.githubusercontent.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-click-events/models/CesiumMan.gltf"
+        scale="5 5 5"
+        position="50 150 0"
+      >
       </a-entity>
-          <a-box position='1.7 0 -1' material='color: cyan; opacity:0.7'
-            height="0.2" width="0.2" depth="0.2"
-            animation="property: rotation; to:0 360 0; dur: 5000; easing: linear; loop: true">
-          </a-box>
-
-
-
-          <a-plane height="2" width= "3" color="blue" position="0 0 0" rotation="-90 0 0" material="opacity:0.9">
-            <a-text value="Richard Ballaux" position="-1.2 0.8 0.1" height="3" width="3" color="red"></a-text>
-            <a-image src="profile.jpg" width="0.5" height="0.7" position="1 0.6 0.1"></a-image>
-
-            <a-text value=
-            "\n Graduated Engineering Student
-            \n E-mail: richard.ballaux@gmail.com
-            \n Linked-In: www.linkedin.com/in/richard-ballaux"
-            position="-1.3 0.5 0.1" height="2" width="2" color="white"></a-text>
-            <a-entity id="linkedinIcon">
-            <a-image src="linkedinLogo.png" width="0.2" height="0.2" position="1 0 0.1">
-            </a-image>
-
-              </a-entity>
-          </a-plane>
-  	</a-marker>
-  	<a-entity camera></a-entity>
-    </a-scene>
-  </body>
-</html>
+    </a-nft>
+    <!-- static camera that moves according to the device movemenents -->
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
